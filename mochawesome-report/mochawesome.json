@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-12-01T14:29:36.175Z",
-    "end": "2025-12-01T14:29:36.176Z",
-    "duration": 1,
+    "start": "2025-12-03T12:13:20.565Z",
+    "end": "2025-12-03T12:13:20.567Z",
+    "duration": 2,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "d7a44b3d-46e5-4568-bd6b-c4dd06901cc8",
+      "uuid": "e3dc55c9-0818-4bc7-a410-38b60d23e8e0",
       "title": "",
       "fullFile": "/Users/daniel_molina/Downloads/JS/unit-testing/test/strings_validator/stringsValidator.spec.js",
       "file": "/test/strings_validator/stringsValidator.spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "d9964bcb-18b4-4ad8-8a18-425db38a2024",
+          "uuid": "02156afd-e2d9-49a2-a21f-f49f63074bcb",
           "title": "StringsValidator",
           "fullFile": "/Users/daniel_molina/Downloads/JS/unit-testing/test/strings_validator/stringsValidator.spec.js",
           "file": "/test/strings_validator/stringsValidator.spec.js",
@@ -45,8 +45,8 @@
               "context": null,
               "code": "validator = new StringsValidator();",
               "err": {},
-              "uuid": "20e997f3-2b14-43a5-85e1-78d5543914c0",
-              "parentUUID": "d9964bcb-18b4-4ad8-8a18-425db38a2024",
+              "uuid": "84e76ef0-498c-4b49-b743-9eaa69ec576a",
+              "parentUUID": "02156afd-e2d9-49a2-a21f-f49f63074bcb",
               "isHook": true,
               "skipped": false
             }
@@ -65,8 +65,8 @@
               "context": null,
               "code": "validator = null;",
               "err": {},
-              "uuid": "110be4e1-1a2d-46ac-bbdb-57a43bc74897",
-              "parentUUID": "d9964bcb-18b4-4ad8-8a18-425db38a2024",
+              "uuid": "acf9cb52-d776-473c-8489-4be374a6dd30",
+              "parentUUID": "02156afd-e2d9-49a2-a21f-f49f63074bcb",
               "isHook": true,
               "skipped": false
             }
@@ -74,43 +74,43 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "3748237e-ca8f-422f-9ffd-d4688e38e343",
-              "title": "capitalize",
+              "uuid": "85afb876-0343-47a8-b79b-b139371561ad",
+              "title": "reverseWords",
               "fullFile": "/Users/daniel_molina/Downloads/JS/unit-testing/test/strings_validator/stringsValidator.spec.js",
               "file": "/test/strings_validator/stringsValidator.spec.js",
               "beforeHooks": [],
               "afterHooks": [],
               "tests": [
                 {
-                  "title": "should capitalize word",
-                  "fullTitle": "StringsValidator capitalize should capitalize word",
+                  "title": "should reverse sentence with special characters",
+                  "fullTitle": "StringsValidator reverseWords should reverse sentence with special characters",
                   "timedOut": false,
-                  "duration": 0,
+                  "duration": 1,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
                   "fail": false,
                   "pending": false,
                   "context": null,
-                  "code": "expect(validator.capitalize(\"adrian\")).to.equal(\"Adrian\");",
+                  "code": "expect(validator.reverseWords(\"C@arlos, Sergio's and myself.\")).to.equal(\n  \"myself. and Sergio's C@arlos,\"\n);",
                   "err": {},
-                  "uuid": "365217c7-98bd-4025-a4f5-c61b12e1d91c",
-                  "parentUUID": "3748237e-ca8f-422f-9ffd-d4688e38e343",
+                  "uuid": "45fbacb2-6145-4454-b24a-32045a208abe",
+                  "parentUUID": "85afb876-0343-47a8-b79b-b139371561ad",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "365217c7-98bd-4025-a4f5-c61b12e1d91c"
+                "45fbacb2-6145-4454-b24a-32045a208abe"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 0,
+              "duration": 1,
               "root": false,
               "rootEmpty": false,
-              "_timeout": 2000
+              "_timeout": 60000
             }
           ],
           "passes": [],
@@ -120,7 +120,7 @@
           "duration": 0,
           "root": false,
           "rootEmpty": false,
-          "_timeout": 2000
+          "_timeout": 60000
         }
       ],
       "passes": [],
@@ -130,7 +130,7 @@
       "duration": 0,
       "root": true,
       "rootEmpty": true,
-      "_timeout": 2000
+      "_timeout": 60000
     }
   ],
   "meta": {
