@@ -24,7 +24,9 @@ describe("StringsValidator", () => {
     });
 
     it("should throw error if empty", () => {
-      expect(() => validator.capitalize("")).to.throw("Input cannot be empty");
+      expect(() => validator.capitalize("")).to.throw(
+        "Input must not be empty"
+      );
     });
 
     it("should capitalize word", () => {
@@ -47,7 +49,7 @@ describe("StringsValidator", () => {
 
     it("should throw error if empty", () => {
       expect(() => validator.reverseWords("")).to.throw(
-        "Input cannot be empty"
+        "Input must not be empty"
       );
     });
 
@@ -81,6 +83,48 @@ describe("StringsValidator", () => {
 
     it("should remove multiple spaces in between and leading/trailing spaces and reverse sentence", () => {
       expect(validator.reverseWords("   Hola   papa   ")).to.equal("papa Hola");
+    });
+
+    describe("fizzBuzz", () => {
+      it("should throw an error if null", () => {
+        expect(() => validator.fizzBuzz(null)).to.throw(
+          "Input must not be null"
+        );
+      });
+
+      it("should throw an error if not a number", () => {
+        expect(() => validator.fizzBuzz("Hello")).to.throw(
+          "Input must be a number"
+        );
+      });
+
+      it("should throw error if <0", () => {
+        expect(() => validator.fizzBuzz(-10)).to.throw(
+          "Input must be a positive number"
+        );
+      });
+
+      it("should throw error if =0", () => {
+        expect(() => validator.fizzBuzz(0)).to.throw(
+          "Input must be a positive number"
+        );
+      });
+
+      it("should return FizzBuzz if divisible by 3 and 5", () => {
+        expect(validator.fizzBuzz(15)).to.equal("FizzBuzz");
+      });
+
+      it("should return Fizz if divisible by 3", () => {
+        expect(validator.fizzBuzz(3)).to.equal("Fizz");
+      });
+
+      it("should return Buzz if divisible by 5", () => {
+        expect(validator.fizzBuzz(5)).to.equal("Buzz");
+      });
+
+      it("should return number if not divisible by either 3 or 5", () => {
+        expect(validator.fizzBuzz(11)).to.equal("11");
+      });
     });
   });
 });

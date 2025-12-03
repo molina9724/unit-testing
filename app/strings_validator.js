@@ -7,7 +7,7 @@ class StringsValidator {
       throw new Error("Input must be a string");
     }
     if (word.length < 1) {
-      throw new Error("Input cannot be empty");
+      throw new Error("Input must not be empty");
     }
     return word[0].toUpperCase() + word.slice(1).toLowerCase();
   }
@@ -23,13 +23,35 @@ class StringsValidator {
       throw new Error("Input must not be empty");
     }
     if (word.length < 1) {
-      throw new Error("Input cannot be empty");
+      throw new Error("Input must not be empty");
     }
     let splitWord = word.trim().split(" ");
     let removeSpaces = splitWord.filter((space) => Boolean(space));
     removeSpaces = removeSpaces.reverse();
     let joinWord = removeSpaces.join(" ");
     return joinWord;
+  }
+
+  fizzBuzz(number) {
+    if (number == null) {
+      throw new Error("Input must not be null");
+    }
+    if (typeof number !== "number") {
+      throw new Error("Input must be a number");
+    }
+    if (number <= 0) {
+      throw new Error("Input must be a positive number");
+    }
+    if (number % 3 === 0 && number % 5 === 0) {
+      return "FizzBuzz";
+    }
+    if (number % 3 === 0) {
+      return "Fizz";
+    }
+    if (number % 5 === 0) {
+      return "Buzz";
+    }
+    return `${number}`;
   }
 }
 
