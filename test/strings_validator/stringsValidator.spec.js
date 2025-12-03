@@ -127,4 +127,64 @@ describe("StringsValidator", () => {
       });
     });
   });
+
+  describe("firstNonRepeatingChar", () => {
+    it("should throw error if null", () => {
+      expect(() => validator.firstNonRepeatingChar(null)).to.throw(
+        "Input must not be null"
+      );
+    });
+
+    it("should throw error if not string", () => {
+      expect(() => validator.firstNonRepeatingChar(5)).to.throw(
+        "Input must be a string"
+      );
+    });
+
+    it("should throw error if empty", () => {
+      expect(() => validator.firstNonRepeatingChar("")).to.throw(
+        "Input must not be empty"
+      );
+    });
+
+    it("should throw error if spaces", () => {
+      expect(() => validator.firstNonRepeatingChar("     ")).to.throw(
+        "Input must not be empty"
+      );
+    });
+
+    it("should return the same single character a", () => {
+      expect(validator.firstNonRepeatingChar("a")).to.equal("a");
+    });
+
+    it("should return a", () => {
+      expect(validator.firstNonRepeatingChar("hhoolla")).to.equal("a");
+    });
+
+    it("should return null as characters repeat", () => {
+      expect(validator.firstNonRepeatingChar("hhoollaa")).to.equal(null);
+    });
+
+    it("should return a despite case sensitivity", () => {
+      expect(validator.firstNonRepeatingChar("HHhOOoLLlA")).to.equal("a");
+    });
+
+    it("should return space", () => {
+      expect(validator.firstNonRepeatingChar("hh oolla")).to.equal(" ");
+    });
+
+    it("should return .", () => {
+      expect(validator.firstNonRepeatingChar(".abc")).to.equal(".");
+    });
+
+    it("should return a with long strings", () => {
+      expect(
+        validator.firstNonRepeatingChar("b" + "a".repeat(100000))
+      ).to.equal("b");
+    });
+
+    it("should return 😢 with unicode characters", () => {
+      expect(validator.firstNonRepeatingChar("😊😊😢")).to.equal("😢");
+    });
+  });
 });

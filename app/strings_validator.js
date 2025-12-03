@@ -22,9 +22,6 @@ class StringsValidator {
     if (word.trim().length < 1) {
       throw new Error("Input must not be empty");
     }
-    if (word.length < 1) {
-      throw new Error("Input must not be empty");
-    }
     let splitWord = word.trim().split(" ");
     let removeSpaces = splitWord.filter((space) => Boolean(space));
     removeSpaces = removeSpaces.reverse();
@@ -52,6 +49,33 @@ class StringsValidator {
       return "Buzz";
     }
     return `${number}`;
+  }
+
+  firstNonRepeatingChar(string) {
+    if (string == null) {
+      throw new Error("Input must not be null");
+    }
+    if (typeof string !== "string") {
+      throw new Error("Input must be a string");
+    }
+    if (string.trim().length < 1) {
+      throw new Error("Input must not be empty");
+    }
+    string = string.toLowerCase();
+    const map = new Map();
+    for (let element of string) {
+      if (map.has(element)) {
+        map.set(element, map.get(element) + 1);
+      } else {
+        map.set(element, 1);
+      }
+    }
+    for (let element of string) {
+      if (map.get(element) === 1) {
+        return element;
+      }
+    }
+    return null;
   }
 }
 
