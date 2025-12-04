@@ -77,6 +77,28 @@ class StringsValidator {
     }
     return null;
   }
+
+  countVowels(string) {
+    if (string == null) {
+      throw new Error("Input must not be null");
+    }
+    if (typeof string !== "string") {
+      throw new Error("Input must be a string");
+    }
+    string = string.replace(/[^a-zA-Z]/g, "");
+    if (string.trim().length < 1) {
+      return 0;
+    }
+    string = string.toLowerCase();
+    let vowels = ["a", "e", "i", "o", "u"];
+    let cont = 0;
+    for (const element of string) {
+      if (vowels.includes(element)) {
+        cont++;
+      }
+    }
+    return cont;
+  }
 }
 
 module.exports = StringsValidator;

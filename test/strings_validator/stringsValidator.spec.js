@@ -187,4 +187,42 @@ describe("StringsValidator", () => {
       expect(validator.firstNonRepeatingChar("😊😊😢")).to.equal("😢");
     });
   });
+
+  describe.only("countVowels", () => {
+    it("should throw error if null", () => {
+      expect(() => validator.countVowels(null)).to.throw(
+        "Input must not be null"
+      );
+    });
+
+    it("should throw error if not a string", () => {
+      expect(() => validator.countVowels(10)).to.throw(
+        "Input must be a string"
+      );
+    });
+
+    it("should return 0 if empty string", () => {
+      expect(validator.countVowels("")).to.equal(0);
+    });
+
+    it("should return 0 if spaces", () => {
+      expect(validator.countVowels("     ")).to.equal(0);
+    });
+
+    it("should return 0 if no vowels", () => {
+      expect(validator.countVowels("qwrtypsdfghjklñzxcvbnm")).to.equal(0);
+    });
+
+    it("should count lower case vowels and return 5", () => {
+      expect(validator.countVowels("aseritoyu")).to.equal(5);
+    });
+
+    it("should count vowels upper case and return 5", () => {
+      expect(validator.countVowels("AsErItOyU")).to.equal(5);
+    });
+
+    it("should count both upper and lower cases and return 10", () => {
+      expect(validator.countVowels("AasEErIItOoyUu")).to.equal(10);
+    });
+  });
 });
