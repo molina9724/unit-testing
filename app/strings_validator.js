@@ -99,6 +99,54 @@ class StringsValidator {
     }
     return cont;
   }
+
+  findLongestWord(string) {
+    if (string == null) {
+      throw new Error("Input must not be null");
+    }
+    if (typeof string !== "string") {
+      throw new Error("Input must be a string");
+    }
+    if (string.trim().length < 1) {
+      return "";
+    }
+    string = string.replace(/[^a-zA-Z]/g, " ");
+    let splitSentence = string.toLowerCase().split(" ");
+    let filteredWords = splitSentence.filter((word) => word.length > 0);
+    const uniqueWords = [...new Set(filteredWords)];
+    let longestWordLength = 0;
+    let longestWord = "";
+    for (const element of uniqueWords) {
+      if (element.length > longestWordLength) {
+        longestWordLength = element.length;
+        longestWord = element;
+      }
+    }
+    return longestWord;
+  }
+
+  findSecondLargest(array) {
+    if (array == null) {
+      throw new Error("Input must not be null");
+    }
+
+    if (!Array.isArray(array)) {
+      throw new Error("Input must be an array");
+    }
+
+    array = array.sort(function (a, b) {
+      return b - a;
+    });
+    const largestNumber = array[0];
+    let secondLargestNumber;
+    for (const element of array) {
+      if (element < largestNumber) {
+        secondLargestNumber = element;
+        return secondLargestNumber;
+      }
+    }
+    throw new Error("Array must contain at least two unique numbers");
+  }
 }
 
 module.exports = StringsValidator;

@@ -188,7 +188,7 @@ describe("StringsValidator", () => {
     });
   });
 
-  describe.only("countVowels", () => {
+  describe("countVowels", () => {
     it("should throw error if null", () => {
       expect(() => validator.countVowels(null)).to.throw(
         "Input must not be null"
@@ -223,6 +223,134 @@ describe("StringsValidator", () => {
 
     it("should count both upper and lower cases and return 10", () => {
       expect(validator.countVowels("AasEErIItOoyUu")).to.equal(10);
+    });
+  });
+
+  describe("findLongestWord", () => {
+    it("should throw error if null", () => {
+      expect(() => validator.findLongestWord(null)).to.throw(
+        "Input must not be null"
+      );
+    });
+
+    it("should throw error if not a string", () => {
+      expect(() => validator.findLongestWord(100)).to.throw(
+        "Input must be a string"
+      );
+    });
+
+    it("should return 0 if empty", () => {
+      expect(validator.findLongestWord("")).to.equal("");
+    });
+
+    it("should return 0 if ony spaces", () => {
+      expect(validator.findLongestWord("     ")).to.equal("");
+    });
+
+    it("should return the same provided word", () => {
+      expect(validator.findLongestWord("hello")).to.equal("hello");
+    });
+
+    it("should return jumps", () => {
+      expect(
+        validator.findLongestWord("The quick brown fox jumps over the lazy dog")
+      ).to.equal("quick");
+    });
+
+    it("should return provided word with no punctuation", () => {
+      expect(validator.findLongestWord("Hello, world!")).to.equal("hello");
+    });
+
+    it("should return cat, first word with same lengths", () => {
+      expect(validator.findLongestWord("cat bat mat")).to.equal("cat");
+    });
+
+    it("should return quick, string with numbers", () => {
+      expect(
+        validator.findLongestWord("The quick brown fox jumps 123 times.")
+      ).to.equal("quick");
+    });
+
+    it("should return hello, string with special characters", () => {
+      expect(validator.findLongestWord("@Hello#world$%^&*()!")).to.equal(
+        "hello"
+      );
+    });
+
+    it("should return abc, string with mixed characters", () => {
+      expect(validator.findLongestWord("123abc!@#def456ghi")).to.equal("abc");
+    });
+
+    it("should return quick, long string", () => {
+      expect(
+        validator.findLongestWord(
+          "The quick brown fox jumps over the lazy dog 1234567890!@#$%^&*()"
+        )
+      ).to.equal("quick");
+    });
+  });
+
+  describe("findSecondLargest", () => {
+    it("should throw error if null", () => {
+      expect(() => validator.findSecondLargest(null)).to.throw(
+        "Input must not be null"
+      );
+    });
+
+    it("should throw error, if not an array", () => {
+      expect(() => validator.findSecondLargest(123)).to.throw(
+        "Input must be an array"
+      );
+    });
+
+    it("should throw an error if array fewer than 2 numbers", () => {
+      expect(() => validator.findSecondLargest([1])).to.throw(
+        "Array must contain at least two unique numbers"
+      );
+    });
+
+    it("should throw error if all duplicates", () => {
+      expect(() => validator.findSecondLargest([1, 1, 1, 1, 1])).to.throw(
+        "Array must contain at least two unique numbers"
+      );
+    });
+
+    it("should return 1, array with 2 numbers", () => {
+      expect(validator.findSecondLargest([1, 2])).to.equal(1);
+    });
+
+    it("should return 40, array with duplicates", () => {
+      expect(
+        validator.findSecondLargest([10, 20, 20, 30, 30, 40, 50])
+      ).to.equal(40);
+    });
+
+    it("should return -20, array with negative numbers", () => {
+      expect(validator.findSecondLargest([-10, -20, -30, -40, -50])).to.equal(
+        -20
+      );
+    });
+
+    it("should return 20, array with negative and positive", () => {
+      expect(validator.findSecondLargest([-10, 20, -30, 40, -50])).to.equal(20);
+    });
+
+    it("should throw error if array fewer than 2 numbers", () => {
+      expect(() => validator.findSecondLargest([1])).to.throw(
+        "Array must contain at least two unique numbers"
+      );
+    });
+
+    it("should throw error if array with all duplicates", () => {
+      expect(() => validator.findSecondLargest([1, 1, 1, 1, 1])).to.throw(
+        "Array must contain at least two unique numbers"
+      );
+    });
+
+    it("should return 9, large array", () => {
+      expect(
+        validator.findSecondLargest([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+      ).to.equal(9);
     });
   });
 });
