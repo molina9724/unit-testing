@@ -147,6 +147,23 @@ class StringsValidator {
     }
     throw new Error("Array must contain at least two unique numbers");
   }
+
+  filterEvenNumbers(array) {
+    if (array == null) {
+      throw new Error("Input must not be null");
+    }
+    if (!Array.isArray(array)) {
+      throw new Error("Input must be an array");
+    }
+    let hasNonNumericValues = array.some(
+      (element) => typeof element !== "number" || Number.isNaN(element)
+    );
+    if (hasNonNumericValues) {
+      throw new Error("Array must contain only numbers");
+    }
+    let evenNumbers = array.filter((num) => num % 2 === 0);
+    return evenNumbers;
+  }
 }
 
 module.exports = StringsValidator;

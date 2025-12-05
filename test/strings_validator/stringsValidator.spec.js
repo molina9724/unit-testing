@@ -353,4 +353,56 @@ describe("StringsValidator", () => {
       ).to.equal(9);
     });
   });
+
+  describe("filterNumbers", () => {
+    it("should throw error if null", () => {
+      expect(() => validator.filterEvenNumbers(null)).to.throw(
+        "Input must not be null"
+      );
+    });
+
+    it("should throw error if not an array", () => {
+      expect(() => validator.filterEvenNumbers(50)).to.throw(
+        "Input must be an array"
+      );
+    });
+
+    it("should throw error if different than numbers", () => {
+      expect(() => validator.filterEvenNumbers([1, 2, "3"])).to.throw(
+        "Array must contain only numbers"
+      );
+    });
+
+    it("should return 2,4,6 (even numbers)", () => {
+      expect(validator.filterEvenNumbers([1, 2, 3, 4, 5, 6])).to.deep.equal([
+        2, 4, 6,
+      ]);
+    });
+
+    it("should return empty array if no even numbers", () => {
+      expect(validator.filterEvenNumbers([1, 3, 5, 7, 9])).to.deep.equal([]);
+    });
+
+    it("should return 2,4,6,8,10, array with all even numbers", () => {
+      expect(validator.filterEvenNumbers([2, 4, 6, 8, 10])).to.deep.equal([
+        2, 4, 6, 8, 10,
+      ]);
+
+      it("should return -2,-4,6,-8, array with negative numbers", () => {
+        expect(validator.filterEvenNumbers([-2, -4, -6, -8])).to.deep.equal([
+          -2, -4, -6, -8,
+        ]);
+      });
+
+      it("should return -2,-4,-6 array with both negative and positive numbers", () => {
+        expect(validator.filterEvenNumbers([-2, 3, -4, 5, -6])).to.deep.equal([
+          -2, -4, -6,
+        ]);
+      });
+
+      it("should return [] if empty array", () => {
+        expect(validator.filterEvenNumbers([])).to.deep.equal([]);
+      });
+    });
+  });
 });
