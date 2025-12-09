@@ -113,7 +113,7 @@ class StringsValidator {
     string = string.replace(/[^a-zA-Z]/g, " ");
     let splitSentence = string.toLowerCase().split(" ");
     let filteredWords = splitSentence.filter((word) => word.length > 0);
-    const uniqueWords = [...new Set(filteredWords)];
+    const uniqueWords = new Set(filteredWords);
     let longestWordLength = 0;
     let longestWord = "";
     for (const element of uniqueWords) {
@@ -163,6 +163,21 @@ class StringsValidator {
     }
     let evenNumbers = array.filter((num) => num % 2 === 0);
     return evenNumbers;
+  }
+
+  countUniqueCharacters(string) {
+    if (string == null) {
+      throw new Error("Input must not be null");
+    }
+    if (typeof string !== "string") {
+      throw new Error("Input must be a string");
+    }
+    if (string.trim().length < 1) {
+      return 0;
+    }
+    string = string.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+    let uniqueChars = new Set(string);
+    return uniqueChars.size;
   }
 }
 

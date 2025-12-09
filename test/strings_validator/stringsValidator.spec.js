@@ -404,5 +404,11 @@ describe("StringsValidator", () => {
         expect(validator.filterEvenNumbers([])).to.deep.equal([]);
       });
     });
+
+    describe.only("countUniqueCharacters", () => {
+      it("should return 7", () => {
+        expect(validator.countUniqueCharacters("hello world")).to.equal(7);
+      });
+    });
   });
 });
