@@ -179,6 +179,21 @@ class StringsValidator {
     let uniqueChars = new Set(string);
     return uniqueChars.size;
   }
+
+  isValidPhoneNumber(phoneNumber) {
+    if (phoneNumber == null) {
+      throw new Error("Input must not be null");
+    }
+    if (typeof phoneNumber !== "string") {
+      throw new Error("Input must be a string");
+    }
+    phoneNumber = phoneNumber.trim();
+    phoneNumber = phoneNumber.replace(/\D/g, "");
+    if (phoneNumber.length === 10) {
+      return true;
+    }
+    return false;
+  }
 }
 
 module.exports = StringsValidator;

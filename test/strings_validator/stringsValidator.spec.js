@@ -405,9 +405,55 @@ describe("StringsValidator", () => {
       });
     });
 
-    describe.only("countUniqueCharacters", () => {
+    describe("countUniqueCharacters", () => {
       it("should return 7", () => {
         expect(validator.countUniqueCharacters("hello world")).to.equal(7);
+      });
+    });
+
+    describe("isValidPhoneNumber", () => {
+      it("should throw error if null", () => {
+        expect(() => validator.isValidPhoneNumber(null)).to.throw(
+          "Input must not be null"
+        );
+      });
+
+      it("should throw error if not a string", () => {
+        expect(() => validator.isValidPhoneNumber(12345)).to.throw(
+          "Input must be a string"
+        );
+      });
+
+      it("should return false if empty string", () => {
+        expect(validator.isValidPhoneNumber("")).to.equal(false);
+      });
+
+      it("should return true with simple valid phone number", () => {
+        expect(validator.isValidPhoneNumber("1234567890")).to.equal(true);
+      });
+
+      it("should return true with valid phone number with dashes", () => {
+        expect(validator.isValidPhoneNumber("123-456-7890")).to.equal(true);
+      });
+
+      it("should return true with valid number with parentheses", () => {
+        expect(validator.isValidPhoneNumber("(123) 456-7890")).to.equal(true);
+      });
+
+      it("should return true with valid phone number with spaces", () => {
+        expect(validator.isValidPhoneNumber("123 456 7890")).to.equal(true);
+      });
+
+      it("should return false with invalid too short phone number", () => {
+        expect(validator.isValidPhoneNumber("12345")).to.equal(false);
+      });
+
+      it("should return false with invalid too long phone number", () => {
+        expect(validator.isValidPhoneNumber("1234567890123")).to.equal(false);
+      });
+
+      it("should return false with invalid number with letters", () => {
+        expect(validator.isValidPhoneNumber("123-abc-7890")).to.equal(false);
       });
     });
   });
