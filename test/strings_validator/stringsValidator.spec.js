@@ -432,18 +432,6 @@ describe("StringsValidator", () => {
         expect(validator.isValidPhoneNumber("1234567890")).to.equal(true);
       });
 
-      it("should return true with valid phone number with dashes", () => {
-        expect(validator.isValidPhoneNumber("123-456-7890")).to.equal(true);
-      });
-
-      it("should return true with valid number with parentheses", () => {
-        expect(validator.isValidPhoneNumber("(123) 456-7890")).to.equal(true);
-      });
-
-      it("should return true with valid phone number with spaces", () => {
-        expect(validator.isValidPhoneNumber("123 456 7890")).to.equal(true);
-      });
-
       it("should return false with invalid too short phone number", () => {
         expect(validator.isValidPhoneNumber("12345")).to.equal(false);
       });
@@ -454,6 +442,32 @@ describe("StringsValidator", () => {
 
       it("should return false with invalid number with letters", () => {
         expect(validator.isValidPhoneNumber("123-abc-7890")).to.equal(false);
+      });
+    });
+
+    describe("formatPhoneNumber", () => {
+      it("should return the formatted number", () => {
+        expect(validator.formatPhoneNumber("1234567890")).to.equal(
+          "(123) 456-7890"
+        );
+      });
+
+      it("should return the formatted number", () => {
+        expect(validator.formatPhoneNumber("123-456-7890")).to.equal(
+          "(123) 456-7890"
+        );
+      });
+
+      it("should return the formatted number", () => {
+        expect(validator.formatPhoneNumber("(123) 456-7890")).to.equal(
+          "(123) 456-7890"
+        );
+      });
+
+      it("should return the formatted number", () => {
+        expect(validator.formatPhoneNumber("123 456 7890")).to.equal(
+          "(123) 456-7890"
+        );
       });
     });
   });
