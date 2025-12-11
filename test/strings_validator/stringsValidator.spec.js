@@ -84,47 +84,45 @@ describe("StringsValidator", () => {
     it("should remove multiple spaces in between and leading/trailing spaces and reverse sentence", () => {
       expect(validator.reverseWords("   Hola   papa   ")).to.equal("papa Hola");
     });
+  });
 
-    describe("fizzBuzz", () => {
-      it("should throw an error if null", () => {
-        expect(() => validator.fizzBuzz(null)).to.throw(
-          "Input must not be null"
-        );
-      });
+  describe("fizzBuzz", () => {
+    it("should throw an error if null", () => {
+      expect(() => validator.fizzBuzz(null)).to.throw("Input must not be null");
+    });
 
-      it("should throw an error if not a number", () => {
-        expect(() => validator.fizzBuzz("Hello")).to.throw(
-          "Input must be a number"
-        );
-      });
+    it("should throw an error if not a number", () => {
+      expect(() => validator.fizzBuzz("Hello")).to.throw(
+        "Input must be a number"
+      );
+    });
 
-      it("should throw error if <0", () => {
-        expect(() => validator.fizzBuzz(-10)).to.throw(
-          "Input must be a positive number"
-        );
-      });
+    it("should throw error if <0", () => {
+      expect(() => validator.fizzBuzz(-10)).to.throw(
+        "Input must be a positive number"
+      );
+    });
 
-      it("should throw error if =0", () => {
-        expect(() => validator.fizzBuzz(0)).to.throw(
-          "Input must be a positive number"
-        );
-      });
+    it("should throw error if =0", () => {
+      expect(() => validator.fizzBuzz(0)).to.throw(
+        "Input must be a positive number"
+      );
+    });
 
-      it("should return FizzBuzz if divisible by 3 and 5", () => {
-        expect(validator.fizzBuzz(15)).to.equal("FizzBuzz");
-      });
+    it("should return FizzBuzz if divisible by 3 and 5", () => {
+      expect(validator.fizzBuzz(15)).to.equal("FizzBuzz");
+    });
 
-      it("should return Fizz if divisible by 3", () => {
-        expect(validator.fizzBuzz(3)).to.equal("Fizz");
-      });
+    it("should return Fizz if divisible by 3", () => {
+      expect(validator.fizzBuzz(3)).to.equal("Fizz");
+    });
 
-      it("should return Buzz if divisible by 5", () => {
-        expect(validator.fizzBuzz(5)).to.equal("Buzz");
-      });
+    it("should return Buzz if divisible by 5", () => {
+      expect(validator.fizzBuzz(5)).to.equal("Buzz");
+    });
 
-      it("should return number if not divisible by either 3 or 5", () => {
-        expect(validator.fizzBuzz(11)).to.equal("11");
-      });
+    it("should return number if not divisible by either 3 or 5", () => {
+      expect(validator.fizzBuzz(11)).to.equal("11");
     });
   });
 
@@ -387,88 +385,88 @@ describe("StringsValidator", () => {
       expect(validator.filterEvenNumbers([2, 4, 6, 8, 10])).to.deep.equal([
         2, 4, 6, 8, 10,
       ]);
-
-      it("should return -2,-4,6,-8, array with negative numbers", () => {
-        expect(validator.filterEvenNumbers([-2, -4, -6, -8])).to.deep.equal([
-          -2, -4, -6, -8,
-        ]);
-      });
-
-      it("should return -2,-4,-6 array with both negative and positive numbers", () => {
-        expect(validator.filterEvenNumbers([-2, 3, -4, 5, -6])).to.deep.equal([
-          -2, -4, -6,
-        ]);
-      });
-
-      it("should return [] if empty array", () => {
-        expect(validator.filterEvenNumbers([])).to.deep.equal([]);
-      });
     });
 
-    describe("countUniqueCharacters", () => {
-      it("should return 7", () => {
-        expect(validator.countUniqueCharacters("hello world")).to.equal(7);
-      });
+    it("should return -2,-4,6,-8, array with negative numbers", () => {
+      expect(validator.filterEvenNumbers([-2, -4, -6, -8])).to.deep.equal([
+        -2, -4, -6, -8,
+      ]);
     });
 
-    describe("isValidPhoneNumber", () => {
-      it("should throw error if null", () => {
-        expect(() => validator.isValidPhoneNumber(null)).to.throw(
-          "Input must not be null"
-        );
-      });
-
-      it("should throw error if not a string", () => {
-        expect(() => validator.isValidPhoneNumber(12345)).to.throw(
-          "Input must be a string"
-        );
-      });
-
-      it("should return false if empty string", () => {
-        expect(validator.isValidPhoneNumber("")).to.equal(false);
-      });
-
-      it("should return true with simple valid phone number", () => {
-        expect(validator.isValidPhoneNumber("1234567890")).to.equal(true);
-      });
-
-      it("should return false with invalid too short phone number", () => {
-        expect(validator.isValidPhoneNumber("12345")).to.equal(false);
-      });
-
-      it("should return false with invalid too long phone number", () => {
-        expect(validator.isValidPhoneNumber("1234567890123")).to.equal(false);
-      });
-
-      it("should return false with invalid number with letters", () => {
-        expect(validator.isValidPhoneNumber("123-abc-7890")).to.equal(false);
-      });
+    it("should return -2,-4,-6 array with both negative and positive numbers", () => {
+      expect(validator.filterEvenNumbers([-2, 3, -4, 5, -6])).to.deep.equal([
+        -2, -4, -6,
+      ]);
     });
 
-    describe("formatPhoneNumber", () => {
-      it("should return the formatted number", () => {
-        expect(validator.formatPhoneNumber("1234567890")).to.equal(
-          "(123) 456-7890"
-        );
-      });
+    it("should return [] if empty array", () => {
+      expect(validator.filterEvenNumbers([])).to.deep.equal([]);
+    });
+  });
 
-      it("should return the formatted number", () => {
-        expect(validator.formatPhoneNumber("123-456-7890")).to.equal(
-          "(123) 456-7890"
-        );
-      });
+  describe("countUniqueCharacters", () => {
+    it("should return 7", () => {
+      expect(validator.countUniqueCharacters("hello world")).to.equal(7);
+    });
+  });
 
-      it("should return the formatted number", () => {
-        expect(validator.formatPhoneNumber("(123) 456-7890")).to.equal(
-          "(123) 456-7890"
-        );
-      });
+  describe("isValidPhoneNumber", () => {
+    it("should throw error if null", () => {
+      expect(() => validator.isValidPhoneNumber(null)).to.throw(
+        "Input must not be null"
+      );
+    });
 
-      it("should return the formatted number", () => {
-        expect(validator.formatPhoneNumber("123 456 7890")).to.equal(
-          "(123) 456-7890"
-        );
-      });
+    it("should throw error if not a string", () => {
+      expect(() => validator.isValidPhoneNumber(12345)).to.throw(
+        "Input must be a string"
+      );
+    });
+
+    it("should return false if empty string", () => {
+      expect(validator.isValidPhoneNumber("")).to.equal(false);
+    });
+
+    it("should return true with simple valid phone number", () => {
+      expect(validator.isValidPhoneNumber("1234567890")).to.equal(true);
+    });
+
+    it("should return false with invalid too short phone number", () => {
+      expect(validator.isValidPhoneNumber("12345")).to.equal(false);
+    });
+
+    it("should return false with invalid too long phone number", () => {
+      expect(validator.isValidPhoneNumber("1234567890123")).to.equal(false);
+    });
+
+    it("should return false with invalid number with letters", () => {
+      expect(validator.isValidPhoneNumber("123-abc-7890")).to.equal(false);
+    });
+  });
+
+  describe("formatPhoneNumber", () => {
+    it("should return the formatted number", () => {
+      expect(validator.formatPhoneNumber("1234567890")).to.equal(
+        "(123) 456-7890"
+      );
+    });
+
+    it("should return the formatted number", () => {
+      expect(validator.formatPhoneNumber("123-456-7890")).to.equal(
+        "(123) 456-7890"
+      );
+    });
+
+    it("should return the formatted number", () => {
+      expect(validator.formatPhoneNumber("(123) 456-7890")).to.equal(
+        "(123) 456-7890"
+      );
+    });
+
+    it("should return the formatted number", () => {
+      expect(validator.formatPhoneNumber("123 456 7890")).to.equal(
+        "(123) 456-7890"
+      );
     });
   });
 });
