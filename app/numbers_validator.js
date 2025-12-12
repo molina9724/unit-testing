@@ -8,9 +8,9 @@ class NumbersValidator {
     const typeOfVariable = typeof number;
 
     // If the type is not number, throw an error
-    if (typeOfVariable !== "number") {
+    if (typeOfVariable !== 'number') {
       throw new Error(
-        `[${number}] is not of type "Number" it is of type "${typeOfVariable}"`
+        `[${number}] is not of type "Number" it is of type "${typeOfVariable}"`,
       );
     } else {
       // If it's a number, return true if it's even (remainder of division by 2 is zero)
@@ -24,9 +24,10 @@ class NumbersValidator {
   getEvenNumbersFromArray(arrayOfNumbers) {
     // Check if the input is an array and if every item is of type number
     if (
-      Array.isArray(arrayOfNumbers) &&
-      arrayOfNumbers.every((item) => typeof item === "number")
+      Array.isArray(arrayOfNumbers)
+      && arrayOfNumbers.every((item) => typeof item === 'number')
     ) {
+      // eslint-disable-next-line max-len
       // Use the filter method to apply isNumberEven on each element and return an array of even numbers
       return arrayOfNumbers.filter(this.isNumberEven);
     }
@@ -43,7 +44,7 @@ class NumbersValidator {
       throw new Error(`[${arrayOfNumbers}] is not an array`);
     }
     // Return true if every element in the array is of type number
-    return arrayOfNumbers.every((n) => typeof n === "number");
+    return arrayOfNumbers.every((n) => typeof n === 'number');
   }
 
   // Method to check if a value is an integer
@@ -51,7 +52,7 @@ class NumbersValidator {
   // @return {Boolean} - Returns true if the value is an integer, false otherwise
   isInteger(n) {
     // If the type of n is not number, throw an error
-    if (typeof n !== "number") {
+    if (typeof n !== 'number') {
       throw new Error(`[${n}] is not a number`);
     }
     // Return true if n is an integer

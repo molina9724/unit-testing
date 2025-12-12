@@ -1,4 +1,5 @@
 const { expect } = require("chai");
+const { it, describe, beforeEach, afterEach } = require("mocha");
 const StringsValidator = require("../../app/strings_validator");
 
 describe("StringsValidator", () => {
@@ -177,7 +178,7 @@ describe("StringsValidator", () => {
 
     it("should return a with long strings", () => {
       expect(
-        validator.firstNonRepeatingChar("b" + "a".repeat(100000))
+        validator.firstNonRepeatingChar(`b${"a".repeat(100000)}`)
       ).to.equal("b");
     });
 

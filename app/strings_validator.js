@@ -22,10 +22,10 @@ class StringsValidator {
     if (word.trim().length < 1) {
       throw new Error("Input must not be empty");
     }
-    let splitWord = word.trim().split(" ");
+    const splitWord = word.trim().split(" ");
     let removeSpaces = splitWord.filter((space) => Boolean(space));
     removeSpaces = removeSpaces.reverse();
-    let joinWord = removeSpaces.join(" ");
+    const joinWord = removeSpaces.join(" ");
     return joinWord;
   }
 
@@ -61,19 +61,21 @@ class StringsValidator {
     if (string.trim().length < 1) {
       throw new Error("Input must not be empty");
     }
-    string = string.toLowerCase();
+    const lowerCaseString = string.toLowerCase();
+    const lowerCaseArray = lowerCaseString.split("");
     const map = new Map();
-    for (let element of string) {
+
+    lowerCaseArray.forEach((element) => {
       if (map.has(element)) {
         map.set(element, map.get(element) + 1);
       } else {
         map.set(element, 1);
       }
-    }
-    for (let element of string) {
-      if (map.get(element) === 1) {
-        return element;
-      }
+    });
+
+    const results = lowerCaseArray.find((element) => map.get(element) === 1);
+    if (results) {
+      return results;
     }
     return null;
   }
@@ -85,19 +87,16 @@ class StringsValidator {
     if (typeof string !== "string") {
       throw new Error("Input must be a string");
     }
-    string = string.replace(/[^a-zA-Z]/g, "");
+    const cleanString = string.replace(/[^a-zA-Z]/g, "");
     if (string.trim().length < 1) {
       return 0;
     }
-    string = string.toLowerCase();
-    let vowels = ["a", "e", "i", "o", "u"];
-    let cont = 0;
-    for (const element of string) {
-      if (vowels.includes(element)) {
-        cont++;
-      }
-    }
-    return cont;
+    const lowerCaseArray = cleanString.toLowerCase().split("");
+    const vowels = ["a", "e", "i", "o", "u"];
+    const newArray = lowerCaseArray.filter((element) =>
+      vowels.includes(element)
+    );
+    return newArray.length;
   }
 
   findLongestWord(string) {
@@ -110,18 +109,19 @@ class StringsValidator {
     if (string.trim().length < 1) {
       return "";
     }
-    string = string.replace(/[^a-zA-Z]/g, " ");
-    let splitSentence = string.toLowerCase().split(" ");
-    let filteredWords = splitSentence.filter((word) => word.length > 0);
+    const cleanString = string.replace(/[^a-zA-Z]/g, " ").toLowerCase();
+    const splitSentence = cleanString.split(" ");
+    const filteredWords = splitSentence.filter((word) => word.length > 0);
     const uniqueWords = new Set(filteredWords);
     let longestWordLength = 0;
     let longestWord = "";
-    for (const element of uniqueWords) {
+
+    uniqueWords.forEach((element) => {
       if (element.length > longestWordLength) {
         longestWordLength = element.length;
         longestWord = element;
       }
-    }
+    });
     return longestWord;
   }
 
@@ -134,16 +134,15 @@ class StringsValidator {
       throw new Error("Input must be an array");
     }
 
-    array = array.sort(function (a, b) {
+    const sortedArray = array.sort(function (a, b) {
       return b - a;
     });
-    const largestNumber = array[0];
-    let secondLargestNumber;
-    for (const element of array) {
-      if (element < largestNumber) {
-        secondLargestNumber = element;
-        return secondLargestNumber;
-      }
+    const largestNumber = sortedArray[0];
+    const secondLargestNumber = sortedArray.find(
+      (element) => element < largestNumber
+    );
+    if (secondLargestNumber) {
+      return secondLargestNumber;
     }
     throw new Error("Array must contain at least two unique numbers");
   }
@@ -155,13 +154,13 @@ class StringsValidator {
     if (!Array.isArray(array)) {
       throw new Error("Input must be an array");
     }
-    let hasNonNumericValues = array.some(
+    const hasNonNumericValues = array.some(
       (element) => typeof element !== "number" || Number.isNaN(element)
     );
     if (hasNonNumericValues) {
       throw new Error("Array must contain only numbers");
     }
-    let evenNumbers = array.filter((num) => num % 2 === 0);
+    const evenNumbers = array.filter((num) => num % 2 === 0);
     return evenNumbers;
   }
 
@@ -175,8 +174,8 @@ class StringsValidator {
     if (string.trim().length < 1) {
       return 0;
     }
-    string = string.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
-    let uniqueChars = new Set(string);
+    const cleanString = string.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+    const uniqueChars = new Set(cleanString);
     return uniqueChars.size;
   }
 
@@ -191,13 +190,12 @@ class StringsValidator {
   }
 
   formatPhoneNumber(phoneNumber) {
-    phoneNumber = phoneNumber.trim();
-    phoneNumber = phoneNumber.replace(/\D/g, "");
-    if (this.isValidPhoneNumber(phoneNumber)) {
-      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+    const cleanPhoneNumber = phoneNumber.trim().replace(/\D/g, "");
+    if (this.isValidPhoneNumber(cleanPhoneNumber)) {
+      return `(${cleanPhoneNumber.slice(0, 3)}) ${cleanPhoneNumber.slice(
         3,
         6
-      )}-${phoneNumber.slice(6)}`;
+      )}-${cleanPhoneNumber.slice(6)}`;
     }
     throw new Error("Invalid phone number");
   }
