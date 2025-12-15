@@ -3,19 +3,29 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "pretest": "echo \"Running pre-test operations...\"",
     "test": "mocha",
+    "posttest": "echo \"Running post-test operations...\"",
     "coverage": "c8 npm test",
-    "lint": "eslint ./ --fix"
+    "lint": "eslint ./ --fix",
+    "release": "standard-version && git push --follow-tags --no-verify",
+    "prepare": "husky install",
+    "pre-commit": "npm run lint && npm run test",
+    "pre-push": "npm run release"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
     "@eslint/js": "^9.39.1",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.32.0",
-    "globals": "^16.5.0"
+    "globals": "^16.5.0",
+    "husky": "^9.1.7",
+    "standard-version": "^9.5.0"
   },
   "dependencies": {
     "c8": "^10.1.3",
